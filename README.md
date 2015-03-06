@@ -2,11 +2,6 @@ Visualization Community
 =======================
 Course project in TDDD27 - Advanced Web Programming.
 
-Screen Cast
------------------------
-A screen cast (in swedish) of a live version of the community can be found here: http://youtu.be/siqVHve1lOs.
-The version used in the screen cast is hosted here: http://130.236.248.228/ (missing profile edit functionality added in later versions). This is provided as is, without warranty, but will hopefully work :).
-
 Scope
 -----------------------
 During the course, a community style app will be developed. The theme that the community will revolve around is the MathGL engine. MathGL is a webGL framework (developed by MT students) used to plot mathematical expressions from multivariable calculus in 3d. The framework is used in http://continuous.se/.
