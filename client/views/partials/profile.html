@@ -1,0 +1,217 @@
+<div data-extend-template="/partials/navbar.html"></div>
+
+<div class="container">
+  <div class="row">
+    <div id="profile-info" class="col-md-4">
+      <img src="http://www.gravatar.com/avatar/{{user.mailHash}}?s=200" />
+      <div ng-hide="user.editing">
+        <h1>
+          {{user.username}}
+          <small ng-if="editable"><a href="#" tooltip="Edit profile">
+            <i class="fa fa-pencil" ng-click="user.editing = true"></i>
+          </a></small>
+          <small ng-if="!editable && !followed">
+            <a
+              tooltip="Follow"
+              popover="Follow user?"
+              popover-btn-type="btn-primary"
+              popover-btn-text="Follow"
+              popover-action="followUser()">
+              <i class="fa fa-user"></i><sup><i class="fa fa-plus"></i></sup>
+            </a>
+          </small>
+          <small ng-if="!editable && followed">
+            <a
+              class="icon-success"
+              tooltip="Followed"
+              popover="Unfollow user?"
+              popover-btn-type="btn-danger"
+              popover-btn-text="Unfollow"
+              popover-action="unfollowUser()">
+              <i class="fa fa-user"></i><sup><i class="fa fa-check"></i></sup>
+            </a>
+          </small>
+        </h1>
+        <p>{{user.email}}</p>
+        <p>Member since <span format-date="user.createdAt"></span></p>
+      </div>
+      <div ng-show="user.editing">
+        <form 
+          id="update-user"
+          action=""
+          role="form"
+          ng-model="user">
+
+          <div class="form-group">
+              <label for="u-username">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="u-username"
+                placeholder="Username"
+                ng-model="user.username">
+          </div>
+          <div class="form-group">
+              <label for="u-email">Email</label>
+              <input
+                type="text"
+                class="form-control"
+                id="u-email"
+                placeholder="Email"
+                ng-model="user.email">
+          </div>
+          <div class="form-group">
+            <button 
+              type="submit"
+              ng-disabled="!user.username || !user.email"
+              class="btn btn-primary"
+              ng-click="updateUser(user); user.editing = false">
+              Save
+            </button>
+            <button 
+              type="submit"
+              class="btn btn-default"
+              ng-click="cancelUserUpdate(user.id); user.editing = false">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h1>
+        Visualizations
+        <small ng-if="editable"><a href="#" tooltip="New visualization">
+          <i class="fa fa-plus" toggles="create-visualization"></i>
+        </a></small>
+      </h1>
+      <form 
+        id="create-visualization"
+        class="tmp-hide"
+        action=""
+        role="form"
+        ng-model="v">
+        <div class="form-group">
+          <label for="v-title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="v-title"
+            placeholder="Visualization title"
+            ng-model="v.title">
+        </div>
+        <div class="form-group">
+          <label for="v-title">Type</label>
+          <input
+            type="text"
+            class="form-control"
+            id="v-type"
+            placeholder="Visualization type"
+            ng-model="v.type">
+        </div>
+        <div class="form-group">
+          <label for="v-title">Descriptiton</label>
+          <textarea
+            class="form-control"
+            id="v-description"
+            placeholder="Visualization description"
+            ng-model="v.description">
+          </textarea>
+        </div>
+        <div class="form-group">
+          <button 
+            type="submit"
+            ng-disabled="!v.title || !v.type || !v.description"
+            class="btn btn-default"
+            ng-click="createVisualization(v)"
+            toggles="create-visualization">
+            Create
+          </button>
+        </div>
+      </form>
+      <ul class="visualization-list">
+        <li class="tile" ng-repeat="v in (user.visualizations | mapToArray) | orderBy:'createdAt':true">
+          <div ng-hide="v.editing">
+            <h3>
+              <a href="/visualization/{{v.id}}">{{v.title}}</a> - <small>{{v.type}}</small>
+            </h3>
+            <p>
+              <small>created <span format-date="v.createdAt"></span></small>
+              <span ng-if="editable">
+                  <span class="button-group">
+                    <button
+                      class="btn btn-xs"
+                      tooltip="Edit visualization"
+                      ng-click="v.editing = true">
+                      <i class="fa fa-pencil"></i>
+                    </button>
+                  </span>
+                  <span class="button-group">
+                    <button
+                      class="btn btn-xs"
+                      popover="Delete this visualization?"
+                      popover-btn-type="btn-danger"
+                      popover-btn-text="Delete"
+                      popover-action="deleteVisualization(v)"
+                      tooltip="Delete Visualization">
+                      <i class="fa fa-trash-o"></i>
+                    </button>
+                  </span>
+                </span>
+            </p>
+            <p>{{v.description}}</p>
+          </div>
+          <form 
+            ng-show="v.editing"
+            id="update-visualization"
+            action=""
+            role="form"
+            ng-model="v">
+            <div class="form-group">
+              <label for="v-title">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="v-title"
+                placeholder="Visualization title"
+                ng-model="v.title">
+            </div>
+            <div class="form-group">
+              <label for="v-title">Type</label>
+              <input
+                type="text"
+                class="form-control"
+                id="v-type"
+                placeholder="Visualization type"
+                ng-model="v.type">
+            </div>
+            <div class="form-group">
+              <label for="v-title">Descriptiton</label>
+              <textarea
+                class="form-control"
+                id="v-description"
+                placeholder="Visualization description"
+                ng-model="v.description">
+              </textarea>
+            </div>
+            <div class="form-group">
+              <button 
+                type="submit"
+                ng-disabled="!v.title || !v.type || !v.description"
+                class="btn btn-primary"
+                ng-click="updateVisualization(v); v.editing = false">
+                Save
+              </button>
+              <button 
+                type="submit"
+                class="btn btn-default"
+                ng-click="cancelUpdate(v.id); v.editing = false">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

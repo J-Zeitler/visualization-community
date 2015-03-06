@@ -1,0 +1,107 @@
+/**
+ * General style
+ */
+
+.container {
+  max-width: 980px;
+}
+
+.navbar-btn {
+  margin-left: 10px;
+}
+
+.col-spacer {
+  margin-top: 7px;
+}
+
+
+.tmp-hide {
+  display: none;
+}
+
+/**
+ * Growls
+ */
+.growl-item.alert-error.ng-enter {
+  background: #f29e9e;
+  -webkit-transition:0.01s linear background;
+  transition:0.01s linear background;
+}
+
+.growl{
+  position:fixed;
+  top:60px;
+  right:10px;
+  float:right;
+  width:250px
+}
+
+/**
+ * Anchors and dialogs
+ */
+a {
+  cursor: pointer;
+}
+
+.icon-success {
+  color: #4cae4c;
+}
+
+.icon-success:hover {
+  color: #5cb85c;
+}
+
+.icon-glow {
+  color: #ed9c28;
+}
+
+.popover {
+  position: absolute;
+  min-width: 200px;
+}
+
+/**
+ * Profile info
+ */
+#profile-info img {
+  width: 75%;
+}
+
+/**
+ * Visualization tiles
+ */
+ul.visualization-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.tile {
+  background-color: #f4f4f4;
+  padding: 5px 10px;
+  margin: 10px 0;
+}
+
+/**
+ * Feed
+ */
+.feed-item {
+  background-color: #f4f4f4;
+  padding: 5px 10px;
+  margin-bottom: 10px; 
+}
+
+#feed-popular {
+  background-color: #f4f4f4;
+}
+
+.cf:after,
+.cf:before {
+  content: '';
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+.cf {
+  zoom: 1;
+}

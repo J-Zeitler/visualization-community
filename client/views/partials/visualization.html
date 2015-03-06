@@ -1,0 +1,58 @@
+<div data-extend-template="/partials/navbar.html"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div data-extend-template="/partials/templates/visualizationTile.html">
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="jumbotron" id="visualization-thumb">
+        <img src="http://placehold.it/700x300" class="img-responsive">
+      </div>
+      <div id="visualization-comments">
+        <h4>Comments</h4>
+        <div class="tile" ng-repeat="c in visualization.comments">
+          <p>
+            <a href="/profile/{{c.commenter.id}}">{{c.commenter.username}}</a>
+            <small format-date="c.createdAt"></small>
+            <span ng-if="currentUser.id == c.commenter.id">
+              <span class="button-group">
+                <button
+                  class="btn btn-xs"
+                  popover="Delete this comment?"
+                  popover-btn-type="btn-danger"
+                  popover-btn-text="Delete"
+                  popover-action="deleteComment(c)"
+                  tooltip="Delete Comment">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </span>
+            </span>
+          </p>
+          <p>{{c.text}}</p>
+        </div>
+      </div>
+      <div id="leave-comment">
+        <form>
+          <div class="form-group">
+            <textarea 
+              class="form-control ng-pristine ng-valid"
+              ng-model="newComment.text"
+              placeholder="Leave a comment">
+            </textarea>
+          </div>
+          <div class="form-group">
+            <button
+              type="submit"
+              class="btn btn-default"
+              ng-disabled="!newComment.text"
+              ng-click="postComment(newComment)">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

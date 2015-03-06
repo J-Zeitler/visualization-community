@@ -1,0 +1,38 @@
+<div data-extend-template="/partials/navbar.html"></div>
+
+<div class="container">
+  <div class="row">
+    <!-- Visualization search results -->
+    <div ng-if="visualizationsFound" class="col-md-6">
+      <div class="tile" ng-repeat="v in visualizations">
+        <h3>
+          <a href="/visualization/{{v.id}}">{{v.title}}</a> - <small>{{v.type}}</small>
+        </h3>
+        <p><small>created <span format-date="v.createdAt"></span></small></p>
+        <p>{{v.description}}</p>
+      </div>
+    </div>
+    <div ng-if="!visualizationsFound" class="tile col-md-6">
+      <p><em>No visualizations matched the search terms</em></p>
+    </div>
+  
+    <div ng-if="usersFound" class="col-md-6">
+      <div class="cf tile" ng-repeat="u in users">
+        <div class="col-xs-3">
+          <a href="/profile/{{u.id}}">
+            <img class="img-responsive" src="http://www.gravatar.com/avatar/{{u.mailHash}}?s=100" />
+          </a>
+        </div>
+        <div class="col-xs-9">
+          <h3>
+            <a href="/profile/{{u.id}}">{{u.username}}</a>
+          </h3>
+          <p>Member since <span format-date="u.createdAt"></span></p>
+        </div>
+      </div>
+    </div>
+    <div ng-if="!usersFound" class="tile col-md-6">
+      <p><em>No users matched the search terms</em></p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Community</a>
+        </div>
+  
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <!-- Left nav -->
+          <ul ng-show="isLoggedIn" class="nav navbar-nav">
+            <li activatable><a href="/">Feed</a></li>
+            <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                <input 
+                  type="text"
+                  ng-model="searchQuery"
+                  class="form-control"
+                  value="searchQuery || ''"
+                  placeholder="Search">
+              </div>
+              <button
+                type="submit"
+                ng-click="searchRedirect(searchQuery)"
+                class="btn btn-default">
+                Submit
+              </button>
+            </form>
+          </ul>
+
+          <!-- Right nav when logged in -->
+          <ul ng-show="isLoggedIn" class="nav navbar-nav navbar-right">
+            <li>
+              <p class="navbar-text">
+                Signed in as
+                <a class="navbar-link" href="/profile/{{currentUser.id}}" tooltip="profile">
+                  {{currentUser.username}}
+                </a>
+              </p>
+            </li>
+            <!-- <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-plus"></i>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">New Visualization</a></li>
+              </ul>
+            </li>
+            <li> -->
+              <p class="navbar-text">
+                <a class="navbar-link" ng-click="logout()" tooltip="logout">
+                  <i class="fa fa-sign-out"></i>
+                </a>
+              </p>
+            </li>
+          </ul>
+          
+          <!-- Right nav when not logged in -->
+          <ul ng-hide="isLoggedIn" class="nav navbar-nav navbar-right">
+            <li>
+              <form action="/signup">
+                <button class="btn btn-success navbar-btn">Sign up</button>
+              </form>
+            </li>
+            <li>
+              <form action="/login">
+                <button class="btn btn-default navbar-btn">Sign in</button>
+              </form>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </div><!-- /.container -->
+</nav>

@@ -1,0 +1,43 @@
+{
+  "name": "sean",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jonas",
+  "license": "ISC",
+  "dependencies": {
+    "MD5": "^1.2.1",
+    "bcrypt-nodejs": "0.0.3",
+    "connect": "^2.15.0",
+    "connect-flash": "^0.1.1",
+    "cookie": "^0.1.2",
+    "crypto": "0.0.3",
+    "ejs": "^1.0.0",
+    "express": "^3.5.1",
+    "express-jwt": "^0.1.3",
+    "grunt": "^0.4.4",
+    "jsonwebtoken": "^0.2.0",
+    "mysql": "^2.1.1",
+    "passport": "^0.2.0",
+    "passport-facebook": "^1.0.3",
+    "passport-local": "^1.0.0",
+    "passport-token": "^0.1.1",
+    "request": "^2.34.0",
+    "sequelize": "^1.7.0"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "grunt-contrib-coffee": "^0.10.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-express-server": "^0.4.13",
+    "grunt-mocha-test": "^0.10.0",
+    "grunt-rerun": "0.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.ida.liu.se/jonze168/tddd272014_visualizationcommunity.git"
+  }
+}

@@ -1,0 +1,89 @@
+<div ng-hide="visualization.editing">
+  <h3>
+    {{visualization.title}} - <small>{{visualization.type}}</small>
+  </h3>
+  <p>
+    <small>created <span format-date="visualization.createdAt"></span></small>
+    <span ng-if="editable">
+      <span class="button-group">
+        <button
+          class="btn btn-xs"
+          tooltip="Edit visualization"
+          ng-click="visualization.editing = true">
+          <i class="fa fa-pencil"></i>
+        </button>
+      </span>
+      <span class="button-group">
+        <button
+          class="btn btn-xs"
+          popover="Delete this visualization?"
+          popover-btn-type="btn-danger"
+          popover-btn-text="Delete"
+          popover-action="deleteVisualization(visualization)"
+          tooltip="Delete Visualization">
+          <i class="fa fa-trash-o"></i>
+        </button>
+      </span>
+    </span>
+    <span ng-if="!editable">
+      <button class="btn btn-xs" ng-if="!starred" ng-click="starVisualization()" tooltip="Star visualization">
+        <i class="fa fa-star-o"></i>
+        {{visualization.starredBy.length}}
+      </button>
+      <button class="btn btn-xs" ng-if="starred" ng-click="unstarVisualization()" tooltip="Remove star">
+        <i class="icon-glow fa fa-star"></i>
+        {{visualization.starredBy.length}}
+      </button>
+    </span>
+  </p>
+  <p>{{visualization.description}}</p>
+</div>
+<form 
+  ng-show="visualization.editing"
+  id="update-visualization"
+  action=""
+  role="form"
+  ng-model="visualization">
+  <div class="form-group">
+    <label for="v-title">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="v-title"
+      placeholder="Visualization title"
+      ng-model="visualization.title">
+  </div>
+  <div class="form-group">
+    <label for="v-title">Type</label>
+    <input
+      type="text"
+      class="form-control"
+      id="v-type"
+      placeholder="Visualization type"
+      ng-model="visualization.type">
+  </div>
+  <div class="form-group">
+    <label for="v-title">Descriptiton</label>
+    <textarea
+      class="form-control"
+      id="v-description"
+      placeholder="Visualization description"
+      ng-model="visualization.description">
+    </textarea>
+  </div>
+  <div class="form-group">
+    <button 
+      type="submit"
+      ng-disabled="!visualization.title || !visualization.type || !visualization.description"
+      class="btn btn-primary"
+      ng-click="updateVisualization(visualization); visualization.editing = false">
+      Save
+    </button>
+    <button 
+      type="submit"
+      class="btn btn-default"
+      ng-click="cancelUpdate(visualization.id); visualization.editing = false">
+      Cancel
+    </button>
+  </div>
+</form>

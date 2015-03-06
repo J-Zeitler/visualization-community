@@ -1,0 +1,25 @@
+<div data-extend-template="/partials/navbar.html"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div ng-repeat="a in activities" class="feed-item">
+        <p><small format-date="a.updatedAt"></small></p>
+        <div feed-item="a"></div>
+      </div>
+    </div>
+    <div id="feed-popular" class="col-md-4">
+      <h3>Popular Visualizations</h3>
+      <div class="visualization-tile-popular" ng-repeat="v in popularVisualizations | orderBy:'starredBy.length':true">
+        <p>
+          <span>
+            <i ng-if="v.starredBy.indexOf(currentUser.id) >= 0" class="icon-glow fa fa-star"></i>
+            <i ng-if="v.starredBy.indexOf(currentUser.id) < 0" class="fa fa-star-o"></i>
+            <small>{{v.starredBy.length}}</small>
+          </span>
+          <a href="/visualization/{{v.id}}">{{v.title}}</a> by <a href="/profile/{{v.UserId}}">{{v.creator.username}}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

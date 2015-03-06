@@ -1,0 +1,10 @@
+<div class="feed-user-create">
+  <p>
+    <a class="profile-thumb" href="/profile/{{feedItem.visualization.UserId}}">
+      <img src="http://www.gravatar.com/avatar/{{feedItem.visualization.creator.mailHash}}?s=30" />
+    </a>
+    <a href="/profile/{{feedItem.visualization.UserId}}">{{feedItem.visualization.creator.username}}</a>
+    updated their visualization
+    <a href="/visualization/{{feedItem.VisualizationId}}">{{feedItem.visualization.title}}</a>.
+  </p>
+</div>

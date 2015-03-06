@@ -1,0 +1,13 @@
+<div class="feed-user-create">
+  <p>
+    <a class="profile-thumb" href="/profile/{{feedItem.visualization.UserId}}">
+      <img src="http://www.gravatar.com/avatar/{{feedItem.visualization.creator.mailHash}}?s=30" />
+    </a>
+    <a href="/profile/{{feedItem.UserId}}">{{feedItem.visualization.creator.username}}</a>
+    created a visualization
+    <h4>
+      <a href="/visualization/{{feedItem.VisualizationId}}">{{feedItem.visualization.title}}</a>
+    </h4>
+    <img src="http://placehold.it/700x200" class="img-responsive">
+  </p>
+</div>
